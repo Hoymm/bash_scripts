@@ -1,0 +1,16 @@
+#!/bin/bash
+path_by_domain="/pl/com/muca";
+set -e
+if [ "x$1" = "x" ];then
+	echo "Wybacz stary, musisz podac nazwe katalogu.";
+	exit 1;
+elif [ -d $1 ];then
+	echo "Taki  folder juz isnieje";
+	exit 1;
+else
+	mkdir $1
+	cd $1
+	mkdir -p "src/main/java/${path_by_domain}"
+	mkdir -p "src/test/java/${path_by_domain}"
+  	mkdir -p "src/main/resources"
+fi
