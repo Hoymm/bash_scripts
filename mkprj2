@@ -2,10 +2,10 @@
 path_by_domain="/pl/com/muca";
 set -e
 if [ "x$1" = "x" ];then
-	echo "Wybacz stary, musisz podac nazwe katalogu.";
+	echo "Please insert the project name.";
 	exit 1;
 elif [ -d $1 ];then
-	echo "Taki  folder juz isnieje";
+	echo "\"${x}\" directory already exits. ";
 	exit 1;
 else
 	mkdir $1
