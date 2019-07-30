@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+
+while test $# -gt 0; do
+  echo "NUMBER: ${#}";
+  case "$1" in
+    -h|--help)
+      echo -e "\n"
+      echo -e "\e[1mName:\e[0m"
+      echo -e "\tmkprj_dir - project directories creator.\n";
+      
+      echo -e "\e[1mSynopsis:\e[0m";
+      echo -e "\t\e[1mmkprj_dir\e[0m [OPTION]... NAME\n";
+      
+      echo -e "\e[1mOptions:\e[0m"
+      echo -e "\t\e[1m-d, --domain\e[0m\treverse domain notation e.g. pl.com.muca";
+      exit 0
+      ;;
+  -r)
+    shift
+    if test $# -gt 0; then
+      reversed_domain=$1;
+    else
+      exit 1;
+    fi
+    shift
+    ;;
+  --reversed_domain*)
+    reversed_domain=$(sed 's/^[^=]*=//g' <<< $1); 
+    shift
+    ;;
+   *)
+     break;
+     ;;
+  esac
+done
+
+echo "REVERSED DOMAIN: ${reversed_domain}";
+path_by_domain=$(sed 's/\./\//g' <<< "${reversed_domain}");
+echo "PATH: ${path_by_domain}";
+
+project_name="oczy";
+#set -e
+#if [ "$1" = "" ];then
+#	echo "Project name was not specified.";
+#	exit 1;
+#elif [ -d $1 ];then
+#	echo "\"${1}\" directory already exits. ";
+#	exit 1;
+#else
+#	mkdir -p "$project_name/src/main/java/${path_by_domain}"
+#	mkdir -p "$project_name/src/test/java/${path_by_domain}"
+#  	mkdir -p "$project_name/src/main/resources"
+#fi
+
+
