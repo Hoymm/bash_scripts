@@ -1,11 +1,11 @@
 #!/bin/bash
 path_by_domain="/pl/com/muca";
 set -e
-if [ "x$1" = "x" ];then
-	echo "Please insert the project name.";
+if [ "$1" = "" ];then
+	echo "Project name was not specified.";
 	exit 1;
 elif [ -d $1 ];then
-	echo "\"${x}\" directory already exits. ";
+	echo "\"${1}\" directory already exits. ";
 	exit 1;
 else
 	mkdir $1
@@ -14,3 +14,5 @@ else
 	mkdir -p "src/test/java/${path_by_domain}"
   	mkdir -p "src/main/resources"
 fi
+
+
