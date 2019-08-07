@@ -2,9 +2,18 @@
 
 project_name=""
 project_package_path=""
+reversed_domain=""
+
+generate_reversed_domain_from_domain(){
+  reversed_domain=$(
+	echo ${1} | 
+	awk -F "." '{out=""; for(i=1;i<=NF;i++){out=$i"."out}; print out}' | 
+	sed 's/\.$//'
+  );
+} 
 
 generate_project_package_path_from_reversed_domain(){
-  project_package_path=$(sed 's/\./\//g' <<< $1);
+  project_package_path=$(sed 's/\./\//g' <<< ${reversed_domain});
 }
 
 help_information(){
@@ -26,11 +35,12 @@ while test $# -gt 0; do
       echo -e "\t\e[1m-n, --name \e[0m\tname of the project e.g. battleships";
       exit 0
       ;;
-  -r)
+  -d)
     shift
     if test $# -gt 0; then
-      reversed_domain=$1;
-      generate_project_package_path_from_reversed_domain ${reversed_domain}
+      domain=$1;
+      generate_reversed_domain_from_domain ${domain} 
+      generate_project_package_path_from_reversed_domain
     else
       echo -e 'Reversed domain was not specified after \e[1m-r\e[0m option';
       help_information  
@@ -38,9 +48,10 @@ while test $# -gt 0; do
     fi
     shift
     ;;
-  --reversed_domain*)
-    reversed_domain=$(sed 's/^[^=]*=//g' <<< $1); 
-    generate_project_package_path_from_reversed_domain ${reversed_domain}
+  --domain*)
+    domain=$(sed 's/^[^=]*=//g' <<< $1); 
+    generate_reversed_domain_from_domain ${domain} 
+    generate_project_package_path_from_reversed_domain
     shift
     ;;
   -n)
@@ -77,5 +88,5 @@ else
   mkdir -p "${project_name}/src/main/resources"
 fi
 
-echo -e "Project \e[1m${project_name}\e[0m created successfully.";
-echo "Project package path: ${project_package_path}";
+#echo -e "Project \e[1m${project_name}\e[0m created successfully.";
+#echo "Project package path: ${project_package_path}";
