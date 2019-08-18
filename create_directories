@@ -17,7 +17,7 @@ generate_project_package_path_from_reversed_domain(){
 }
 
 help_information(){
-  echo -e 'For more information type: \e[1mmkprj_dir --help\e[0m';
+  echo -e 'For more information type: \e[1mcreate_directories --help\e[0m';
 }
 
 while test $# -gt 0; do
@@ -25,10 +25,10 @@ while test $# -gt 0; do
     -h|--help)
       echo -e "\n"
       echo -e "\e[1mName:\e[0m"
-      echo -e "\tmkprj_dir - project directories creator.\n";
+      echo -e "\tcreate_directories - project directories creator.\n";
       
       echo -e "\e[1mSynopsis:\e[0m";
-      echo -e "\t\e[1mmkprj_dir\e[0m [OPTION] ... NAME\n";
+      echo -e "\t\e[1mcreate_directories\e[0m [OPTION] ... NAME\n";
       
       echo -e "\e[1mOptions:\e[0m"
       echo -e "\t\e[1m-d, --domain\e[0m\treverse domain notation e.g. pl.com.muca";
