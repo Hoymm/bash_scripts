@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ "x$1" = "x" ];then
+	echo "Please specify the project name.";
+	exit 1;
+elif [ -d $1 ];then
+	echo "Directory \"${1}\" already exists.";
+	exit 1;
+else
+	bash ./mkprj_dir --name="${1}" --domain=muca.com.pl
+fi
