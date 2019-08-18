@@ -7,5 +7,5 @@ elif [ -d $1 ];then
 	echo "Directory \"${1}\" already exists.";
 	exit 1;
 else
-	bash ./mkprj_dir --name="${1}" --domain=muca.com.pl
+	bash ./create_directories --name="${1}" --domain=muca.com.pl
 fi
