@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+main_name=""
+
+help_info(){
+  echo -e 'For more information type: \e[1mcreate_main --help\e[0m';
+}
+
+while test $# -gt 0; do
+  case "$1" in
+    -h|--help)
+      echo -e "\n"
+      echo -e "\e[1mName:\e[0m"
+      echo -e "\tcreate_main - Main.java file creator.\n";
+      
+      echo -e "\e[1mSynopsis:\e[0m";
+      echo -e "\t\e[1mcreate_main\e[0m [OPTION] ... NAME\n";
+      
+      echo -e "\e[1mOptions:\e[0m"
+      echo -e "\t\e[1m-n, --name \e[0m\tname of the project e.g. Battleships";
+      exit 0
+      ;;
+    -n)
+      shift
+      if test $# -gt 0; then
+        main_name=${1}
+      else
+        echo -e 'Main name was not specified after \e[1m-n\e[0m option.';
+        help_info 
+        exit 1;
+      fi
+      shift
+      ;;
+    --name*)
+      main_name=$(sed 's/^[^=]*=//g' <<< $1);
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+done;
+
+if [[ -z "${main_name}" ]]; then
+  echo -e 'Please specify main class name.'
+  help_info
+  exit 1;
+else
+  touch "${main_name}"
+fi
