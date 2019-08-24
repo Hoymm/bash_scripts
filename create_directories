@@ -87,6 +87,3 @@ else
   mkdir -p "${project_name}/src/test/java/${project_package_path}"
   mkdir -p "${project_name}/src/main/resources"
 fi
-
-#echo -e "Project \e[1m${project_name}\e[0m created successfully.";
-#echo "Project package path: ${project_package_path}";
